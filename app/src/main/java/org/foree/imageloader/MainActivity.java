@@ -2,8 +2,10 @@ package org.foree.imageloader;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         recyclerView.setAdapter(imageAdapter = new ImageAdapter());
     }
 
@@ -30,17 +32,16 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public ImageHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new ImageHolder(LayoutInflater.from(MainActivity.this).inflate(R.layout.image_holder, parent));
+            return new ImageHolder(LayoutInflater.from(MainActivity.this).inflate(R.layout.image_holder, parent, false));
         }
 
         @Override
         public void onBindViewHolder(ImageHolder holder, int position) {
-
         }
 
         @Override
         public int getItemCount() {
-            return 0;
+            return 30;
         }
     }
 
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         public ImageHolder(View itemView) {
             super(itemView);
-            imageView = (ImageView) itemView.findViewById(R.id.image_view);
+            imageView = (ImageView) itemView.findViewById(R.id.iv_item_image);
         }
     }
 
