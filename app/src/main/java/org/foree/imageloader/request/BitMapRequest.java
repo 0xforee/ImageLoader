@@ -6,4 +6,9 @@ package org.foree.imageloader.request;
  */
 
 public class BitMapRequest {
+    private String imageUri;
+
+    public String getImageUri() {
+        return imageUri;
+    }
 }

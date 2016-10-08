@@ -7,6 +7,22 @@ package org.foree.imageloader.loader;
 
 public class LoaderManager {
 
+    private static LoaderManager mInstance;
+
+    private LoaderManager(){}
+
+    // singleton
+    public static LoaderManager getInstance(){
+        if( mInstance == null){
+           synchronized (LoaderManager.class){
+               if( mInstance == null){
+                   mInstance = new LoaderManager();
+               }
+           }
+        }
+
+        return mInstance;
+    }
     /**
      * 注册图片加载器
      */

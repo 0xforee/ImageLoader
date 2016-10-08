@@ -1,5 +1,7 @@
 package org.foree.imageloader.loader;
 
+import org.foree.imageloader.request.BitMapRequest;
+
 /**
  * Created by foree on 16-9-30.
  * 从网络查找图片
@@ -7,7 +9,7 @@ package org.foree.imageloader.loader;
 
 public class NetLoader extends AbsLoader {
     @Override
-    public void loadImage(String uri) {
+    public void loadImage(BitMapRequest request) {
 
     }
 }

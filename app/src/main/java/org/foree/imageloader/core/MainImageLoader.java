@@ -12,12 +12,10 @@ import org.foree.imageloader.loader.LoaderManager;
 
 public class MainImageLoader {
 
-    private static MainImageLoader mainImageLoader;
+    private static MainImageLoader mInstance;
     private static final Object syncObject = new Object();
 
     ImageLoaderConfig imageLoaderConfig;
-
-    LoaderManager loaderManager;
 
     private MainImageLoader(){
 
@@ -25,16 +23,16 @@ public class MainImageLoader {
 
     public static MainImageLoader getInstance(){
         // double check
-        if( mainImageLoader == null){
+        if( mInstance == null){
             synchronized (syncObject){
-                if( mainImageLoader == null){
+                if( mInstance == null){
                     // lazy initialization
-                    mainImageLoader = new MainImageLoader();
+                    mInstance = new MainImageLoader();
                 }
             }
         }
 
-        return mainImageLoader;
+        return mInstance;
     }
 
     /**
@@ -42,13 +40,13 @@ public class MainImageLoader {
      */
     public void init(ImageLoaderConfig config){
         imageLoaderConfig = config;
-        loaderManager = new LoaderManager();
+
     }
 
     /**
      * 根据schema显示图片到ImageView
      */
     public void displayImage(ImageView imageView, String Uri){
-        loaderManager.getLoader(Uri).loadImage(Uri);
+
     }
 }
