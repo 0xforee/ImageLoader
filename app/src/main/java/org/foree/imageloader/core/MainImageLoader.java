@@ -3,7 +3,7 @@ package org.foree.imageloader.core;
 import android.widget.ImageView;
 
 import org.foree.imageloader.config.ImageLoaderConfig;
-import org.foree.imageloader.loader.LoaderManager;
+import org.foree.imageloader.request.BitMapRequest;
 
 /**
  * Created by foree on 16-9-30.
@@ -15,7 +15,8 @@ public class MainImageLoader {
     private static MainImageLoader mInstance;
     private static final Object syncObject = new Object();
 
-    ImageLoaderConfig imageLoaderConfig;
+    private ImageLoaderConfig imageLoaderConfig;
+    private RequestQueue mRequestQueue;
 
     private MainImageLoader(){
 
@@ -40,13 +41,15 @@ public class MainImageLoader {
      */
     public void init(ImageLoaderConfig config){
         imageLoaderConfig = config;
-
+        mRequestQueue = new RequestQueue(imageLoaderConfig.getThreadCount());
+        mRequestQueue.start();
     }
 
     /**
      * 根据schema显示图片到ImageView
      */
-    public void displayImage(ImageView imageView, String Uri){
-
+    public void displayImage(ImageView imageView, String uri){
+        BitMapRequest request = new BitMapRequest(imageView, uri);
+        mRequestQueue.add(request);
     }
 }

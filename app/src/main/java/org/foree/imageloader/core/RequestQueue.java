@@ -23,7 +23,7 @@ public class RequestQueue {
     /**
      * 请求的序列号
      */
-    private AtomicInteger mSerilialNumGenerator = new AtomicInteger(0);
+    private AtomicInteger mSerialNumGenerator = new AtomicInteger(0);
 
     private RequestDispatcher[] mDispatcher;
 
@@ -33,14 +33,15 @@ public class RequestQueue {
         threadCount = count;
     }
 
-    public void add(BitMapRequest bitMapRequest){
-        if( mQueue.contains(bitMapRequest)){
+    public void add(BitMapRequest bitmaprequest) {
+        if (!mQueue.contains(bitmaprequest)) {
+            bitmaprequest.setmSerialNum(this.generateSerialNumber());
+            mQueue.add(bitmaprequest);
+        } else {
             Log.d(TAG, "Already Contain This Request");
-            return;
         }
-        mQueue.add(bitMapRequest);
     }
-
+    
     public void start(){
         stop();
         startDispatcher();
@@ -49,15 +50,22 @@ public class RequestQueue {
     private void startDispatcher(){
         mDispatcher = new RequestDispatcher[threadCount];
         for( int i=0; i < threadCount; i++){
+            mDispatcher[i] = new RequestDispatcher(mQueue);
             mDispatcher[i].start();
         }
     }
 
     public void stop(){
-        for(RequestDispatcher dispatcher: mDispatcher){
-            if(!dispatcher.isInterrupted()){
-                dispatcher.interrupt();
+        if( mDispatcher != null) {
+            for (RequestDispatcher dispatcher : mDispatcher) {
+                if (!dispatcher.isInterrupted()) {
+                    dispatcher.interrupt();
+                }
             }
         }
+    }
+
+    private int generateSerialNumber(){
+        return mSerialNumGenerator.incrementAndGet();
     }
 }

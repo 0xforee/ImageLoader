@@ -42,6 +42,10 @@ public class ImageLoaderConfig {
         threadCount = Math.max(threadCount, count);
         return this;
     }
+
+    public int getThreadCount(){
+        return threadCount;
+    }
     /**
      * 配置缓存机制
      * @return
