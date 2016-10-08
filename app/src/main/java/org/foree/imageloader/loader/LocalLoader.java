@@ -1,5 +1,9 @@
 package org.foree.imageloader.loader;
 
+import android.graphics.Bitmap;
+import android.widget.ImageView;
+
+import org.foree.imageloader.R;
 import org.foree.imageloader.request.BitMapRequest;
 
 /**
@@ -8,8 +12,16 @@ import org.foree.imageloader.request.BitMapRequest;
  */
 
 public class LocalLoader extends AbsLoader {
+
     @Override
     public void loadImage(BitMapRequest request) {
+        final ImageView imageView = request.getmImageView();
+        imageView.post(new Runnable() {
+            @Override
+            public void run() {
+                imageView.setImageResource(R.drawable.pubuliu);
+            }
+        });
 
     }
 }

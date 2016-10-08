@@ -12,6 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import org.foree.imageloader.config.ImageLoaderConfig;
+import org.foree.imageloader.core.MainImageLoader;
+
 public class MainActivity extends AppCompatActivity {
 
     // 切换浏览模式
@@ -27,7 +30,13 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(imageAdapter = new ImageAdapter());
+
+        ImageLoaderConfig config = new ImageLoaderConfig();
+        config.setThreadCount(4);
+
+        MainImageLoader.getInstance().init(config);
     }
+
 
     class ImageAdapter extends RecyclerView.Adapter<ImageHolder> {
 
@@ -41,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(ImageHolder holder, int position) {
+            MainImageLoader.getInstance().displayImage(holder.imageView, "file://xxxxxxx");
         }
 
         @Override
