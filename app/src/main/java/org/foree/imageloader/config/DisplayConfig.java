@@ -6,4 +6,14 @@ package org.foree.imageloader.config;
  */
 
 public class DisplayConfig {
+    private int loadingResId;
+    private int failResId;
+
+    public void setLoadingResId(int loadingResId) {
+        this.loadingResId = loadingResId;
+    }
+
+    public void setFailResId(int failResId) {
+        this.failResId = failResId;
+    }
 }
