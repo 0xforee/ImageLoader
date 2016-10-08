@@ -5,5 +5,5 @@ package org.foree.imageloader.policy;
  * 图片加载策略
  */
 
-public class LoadPolicy {
+public abstract class LoadPolicy {
 }
