@@ -6,5 +6,5 @@ package org.foree.imageloader.loader;
  */
 
 public abstract class AbsLoader {
-    abstract void loadImage(String uri);
+    public abstract void loadImage(String uri);
 }

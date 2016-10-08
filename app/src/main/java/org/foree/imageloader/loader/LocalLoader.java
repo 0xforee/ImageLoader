@@ -7,7 +7,7 @@ package org.foree.imageloader.loader;
 
 public class LocalLoader extends AbsLoader {
     @Override
-    void loadImage(String uri) {
+    public void loadImage(String uri) {
 
     }
 }
