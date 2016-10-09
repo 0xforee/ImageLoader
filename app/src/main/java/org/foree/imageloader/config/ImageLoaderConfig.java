@@ -1,6 +1,6 @@
 package org.foree.imageloader.config;
 
-import org.foree.imageloader.cache.BitMapCache;
+import org.foree.imageloader.cache.BitmapCache;
 import org.foree.imageloader.cache.MemoryCache;
 import org.foree.imageloader.policy.LoadPolicy;
 import org.foree.imageloader.policy.SerialPolicy;
@@ -18,7 +18,7 @@ public class ImageLoaderConfig {
     /**
      * 图片缓存策略
      */
-    private BitMapCache bitMapCache = new MemoryCache();
+    private BitmapCache bitmapCache = new MemoryCache();
 
     /**
      * 图片Loading与加载失败的配置对象
@@ -50,8 +50,8 @@ public class ImageLoaderConfig {
      * 配置缓存机制
      * @return
      */
-    public ImageLoaderConfig setCache(BitMapCache cache){
-        bitMapCache = cache;
+    public ImageLoaderConfig setCache(BitmapCache cache){
+        bitmapCache = cache;
         return this;
     }
 
