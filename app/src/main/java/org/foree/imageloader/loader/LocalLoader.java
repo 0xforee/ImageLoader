@@ -1,6 +1,5 @@
 package org.foree.imageloader.loader;
 
-import android.graphics.Bitmap;
 import android.widget.ImageView;
 
 import org.foree.imageloader.R;
