@@ -3,6 +3,8 @@ package org.foree.imageloader.utils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -13,17 +15,28 @@ import java.io.InputStream;
 public class BitmapUtils {
 
     public static Bitmap decodeStreamWithReqSize(InputStream bitmapStream, int reqWidth, int reqHeight){
+
         BitmapFactory.Options options = new BitmapFactory.Options();
         // 不分配内存，只拿到图片数据
         options.inJustDecodeBounds = true;
-        BitmapFactory.decodeStream(bitmapStream, null, options);
 
-        // calculateInSampleSize
-        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+        try {
+            byte[] bitmapByte = readStream(bitmapStream);
+            if( bitmapByte != null){
+                BitmapFactory.decodeByteArray(bitmapByte, 0, bitmapByte.length, options);
 
-        // return bitmap
-        options.inJustDecodeBounds = false;
-        return BitmapFactory.decodeStream(bitmapStream, null, options);
+                // calculateInSampleSize
+                options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+                // return bitmap
+                options.inJustDecodeBounds = false;
+                return BitmapFactory.decodeByteArray(bitmapByte, 0, bitmapByte.length, options);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     /**
@@ -47,5 +60,20 @@ public class BitmapUtils {
         }
 
         return inSampleSize;
+    }
+
+    private static byte[] readStream(InputStream in) throws IOException{
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int len = 0;
+        while( (len = in.read(buffer)) != -1){
+            outputStream.write(buffer, 0, len);
+        }
+
+        outputStream.close();
+        in.close();
+
+        return outputStream.toByteArray();
+
     }
 }
