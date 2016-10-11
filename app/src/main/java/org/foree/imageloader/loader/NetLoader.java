@@ -31,7 +31,7 @@ public class NetLoader extends AbsLoader {
         final ImageView imageView = request.getmImageView();
 
         // check memoryCache
-        Bitmap bitmap = mMemoryCache.getBitmapFromMemoryCache(request.getImageUri());
+        Bitmap bitmap = mMemoryCache.get(request.getImageUri());
         if( bitmap == null){
             // downloadImage
             bitmap = downloadImage(request.getImageUri());
@@ -42,7 +42,7 @@ public class NetLoader extends AbsLoader {
         showImage(imageView, bitmap);
 
         if( bitmap != null) {
-            mMemoryCache.putBitmapToMemoryCache(request.getImageUri(), bitmap);
+            mMemoryCache.put(request.getImageUri(), bitmap);
         }
     }
 

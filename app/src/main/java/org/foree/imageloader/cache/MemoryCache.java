@@ -40,13 +40,15 @@ public class MemoryCache extends BitmapCache {
         return mInstance;
     }
 
-    public Bitmap getBitmapFromMemoryCache(String key){
-        return mMemoryCache.get(key);
+    @Override
+    public Bitmap get(String imageUrl){
+        return mMemoryCache.get(imageUrl);
     }
 
-    public void putBitmapToMemoryCache(String key, Bitmap bitmap){
-        if( getBitmapFromMemoryCache(key) == null){
-            mMemoryCache.put(key, bitmap);
+    @Override
+    public void put(String imageUrl, Bitmap bitmap){
+        if( get(imageUrl) == null){
+            mMemoryCache.put(imageUrl, bitmap);
         }
     }
 }
