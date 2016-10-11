@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import org.foree.imageloader.base.MyApplication;
+import org.foree.imageloader.cache.DoubleCache;
 import org.foree.imageloader.config.ImageLoaderConfig;
 import org.foree.imageloader.core.MainImageLoader;
 
@@ -34,18 +35,22 @@ public class MainActivity extends AppCompatActivity {
         // generate test data
         generateTestData();
 
+        // init Application dir
+        MyApplication myApplication = new MyApplication(this);
+        myApplication.initEnv();
+
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(imageAdapter = new ImageAdapter());
 
         ImageLoaderConfig config = new ImageLoaderConfig();
+        config.setLoadingResId(R.drawable.placeholder);
+        config.setFailResId(R.drawable.error);
         config.setThreadCount(4);
 
         MainImageLoader.getInstance().init(config);
 
-        MyApplication myApplication = new MyApplication(this);
-        myApplication.initEnv();
     }
 
 

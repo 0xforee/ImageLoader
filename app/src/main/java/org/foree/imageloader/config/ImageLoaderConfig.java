@@ -41,7 +41,7 @@ public class ImageLoaderConfig {
      * 配置线程数量
      */
     public ImageLoaderConfig setThreadCount(int count){
-        threadCount = Math.max(threadCount, count);
+        threadCount = Math.min(threadCount, count);
         return this;
     }
 

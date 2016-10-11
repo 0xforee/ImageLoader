@@ -36,15 +36,16 @@ public class NetLoader extends AbsLoader {
         if( bitmap == null){
             // downloadImage
             bitmap = downloadImage(request.getImageUri());
+
+            if( bitmap != null) {
+                mBitmapCache.put(request.getImageUri(), bitmap);
+            }
         }
 
         Log.d(TAG, "url = " + request.getImageUri());
 
         showImage(imageView, bitmap);
 
-        if( bitmap != null) {
-            mBitmapCache.put(request.getImageUri(), bitmap);
-        }
     }
 
     private Bitmap downloadImage(String url){

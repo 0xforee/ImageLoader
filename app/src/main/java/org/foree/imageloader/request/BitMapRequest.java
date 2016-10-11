@@ -3,6 +3,7 @@ package org.foree.imageloader.request;
 import android.widget.ImageView;
 
 import org.foree.imageloader.config.ImageLoaderConfig;
+import org.foree.imageloader.core.MainImageLoader;
 
 /**
  * Created by foree on 16-9-30.
@@ -15,10 +16,10 @@ public class BitMapRequest implements Comparable{
     private int mSerialNum;
     private ImageLoaderConfig mConfig;
 
-    public BitMapRequest(ImageView imageView, String uri, ImageLoaderConfig config){
+    public BitMapRequest(ImageView imageView, String uri){
         mImageView = imageView;
         mUri = uri;
-        mConfig = config;
+        mConfig = MainImageLoader.getInstance().getConfig();
     }
 
     public ImageView getImageView() {
