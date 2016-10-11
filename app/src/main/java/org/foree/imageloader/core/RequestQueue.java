@@ -35,7 +35,7 @@ public class RequestQueue {
 
     public void add(BitMapRequest bitmaprequest) {
         if (!mQueue.contains(bitmaprequest)) {
-            bitmaprequest.setmSerialNum(this.generateSerialNumber());
+            bitmaprequest.setSerialNum(this.generateSerialNumber());
             mQueue.add(bitmaprequest);
         } else {
             Log.d(TAG, "Already Contain This Request");

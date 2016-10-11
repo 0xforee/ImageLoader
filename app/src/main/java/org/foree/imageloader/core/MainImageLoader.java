@@ -49,7 +49,7 @@ public class MainImageLoader {
      * 根据schema显示图片到ImageView
      */
     public void displayImage(ImageView imageView, String uri){
-        BitMapRequest request = new BitMapRequest(imageView, uri);
+        BitMapRequest request = new BitMapRequest(imageView, uri, imageLoaderConfig);
         mRequestQueue.add(request);
     }
 }

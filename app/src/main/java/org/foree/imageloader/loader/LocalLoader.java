@@ -14,7 +14,7 @@ public class LocalLoader extends AbsLoader {
 
     @Override
     public void loadImage(BitMapRequest request) {
-        final ImageView imageView = request.getmImageView();
+        final ImageView imageView = request.getImageView();
         imageView.post(new Runnable() {
             @Override
             public void run() {

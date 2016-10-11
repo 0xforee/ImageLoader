@@ -28,7 +28,7 @@ public class NetLoader extends AbsLoader {
 
     @Override
     public void loadImage(BitMapRequest request) {
-        final ImageView imageView = request.getmImageView();
+        final ImageView imageView = request.getImageView();
 
         // check memoryCache
         Bitmap bitmap = mDoubleCache.get(request.getImageUri());
