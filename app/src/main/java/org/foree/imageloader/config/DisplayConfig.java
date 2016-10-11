@@ -16,4 +16,12 @@ public class DisplayConfig {
     public void setFailResId(int failResId) {
         this.failResId = failResId;
     }
+
+    public int getLoadingResId() {
+        return loadingResId;
+    }
+
+    public int getFailResId() {
+        return failResId;
+    }
 }

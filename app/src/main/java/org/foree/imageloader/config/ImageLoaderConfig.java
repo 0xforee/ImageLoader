@@ -25,7 +25,7 @@ public class ImageLoaderConfig {
     /**
      * 图片Loading与加载失败的配置对象
      */
-    private DisplayConfig displayConfig = new DisplayConfig();
+    public DisplayConfig displayConfig = new DisplayConfig();
 
     /**
      * 图片加载策略

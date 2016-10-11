@@ -1,5 +1,7 @@
 package org.foree.imageloader.loader;
 
+import android.graphics.Bitmap;
+
 import org.foree.imageloader.request.BitMapRequest;
 
 /**
@@ -8,8 +10,9 @@ import org.foree.imageloader.request.BitMapRequest;
  */
 
 public class NullLoader extends AbsLoader {
-    @Override
-    public void loadImage(BitMapRequest request) {
 
+    @Override
+    public Bitmap getBitmap(BitMapRequest request) {
+        return null;
     }
 }
