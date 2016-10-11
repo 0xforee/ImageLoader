@@ -70,20 +70,22 @@ public class DiskCache extends BitmapCache {
     public void put(String imageUrl, Bitmap bitmap) {
         String cacheKey = generateKeyFromUrl(imageUrl);
 
-        try {
-            DiskLruCache.Editor editor = mDiskLruCache.edit(cacheKey);
-            if( editor != null){
-                OutputStream out = editor.newOutputStream(0);
-                if( bitmap != null) {
-                    out.write(bitmapToBytes(bitmap));
-                    editor.commit();
-                }else{
-                    editor.abort();
+        if (get(imageUrl) == null) {
+            try {
+                DiskLruCache.Editor editor = mDiskLruCache.edit(cacheKey);
+                if (editor != null) {
+                    OutputStream out = editor.newOutputStream(0);
+                    if (bitmap != null) {
+                        out.write(bitmapToBytes(bitmap));
+                        editor.commit();
+                    } else {
+                        editor.abort();
+                    }
+                    mDiskLruCache.flush();
                 }
-                mDiskLruCache.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
