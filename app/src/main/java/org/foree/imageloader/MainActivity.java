@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import org.foree.imageloader.base.MyApplication;
 import org.foree.imageloader.config.ImageLoaderConfig;
 import org.foree.imageloader.core.MainImageLoader;
 
@@ -42,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
         config.setThreadCount(4);
 
         MainImageLoader.getInstance().init(config);
+
+        MyApplication myApplication = new MyApplication(this);
+        myApplication.initEnv();
     }
 
 
