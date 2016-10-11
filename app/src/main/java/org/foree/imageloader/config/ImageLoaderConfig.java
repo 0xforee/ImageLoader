@@ -1,6 +1,7 @@
 package org.foree.imageloader.config;
 
 import org.foree.imageloader.cache.BitmapCache;
+import org.foree.imageloader.cache.DoubleCache;
 import org.foree.imageloader.cache.MemoryCache;
 import org.foree.imageloader.policy.LoadPolicy;
 import org.foree.imageloader.policy.ReversePolicy;
@@ -19,12 +20,12 @@ public class ImageLoaderConfig {
     /**
      * 图片缓存策略
      */
-    public BitmapCache bitmapCache = MemoryCache.getInstance();
+    public BitmapCache bitmapCache = DoubleCache.getInstance();
 
     /**
      * 图片Loading与加载失败的配置对象
      */
-    public DisplayConfig displayConfig = new DisplayConfig();
+    private DisplayConfig displayConfig = new DisplayConfig();
 
     /**
      * 图片加载策略

@@ -4,7 +4,8 @@ import android.graphics.Bitmap;
 import android.util.Log;
 import android.widget.ImageView;
 
-import org.foree.imageloader.cache.DoubleCache;
+import org.foree.imageloader.cache.BitmapCache;
+import org.foree.imageloader.core.MainImageLoader;
 import org.foree.imageloader.request.BitMapRequest;
 import org.foree.imageloader.utils.BitmapUtils;
 
@@ -20,10 +21,10 @@ import java.net.URL;
 public class NetLoader extends AbsLoader {
     private static final String TAG = NetLoader.class.getSimpleName();
 
-    private DoubleCache mDoubleCache;
+    private BitmapCache mBitmapCache;
 
     public NetLoader(){
-        mDoubleCache = DoubleCache.getInstance();
+        mBitmapCache = MainImageLoader.getInstance().getConfig().bitmapCache;
     }
 
     @Override
@@ -31,7 +32,7 @@ public class NetLoader extends AbsLoader {
         final ImageView imageView = request.getImageView();
 
         // check memoryCache
-        Bitmap bitmap = mDoubleCache.get(request.getImageUri());
+        Bitmap bitmap = mBitmapCache.get(request.getImageUri());
         if( bitmap == null){
             // downloadImage
             bitmap = downloadImage(request.getImageUri());
@@ -42,7 +43,7 @@ public class NetLoader extends AbsLoader {
         showImage(imageView, bitmap);
 
         if( bitmap != null) {
-            mDoubleCache.put(request.getImageUri(), bitmap);
+            mBitmapCache.put(request.getImageUri(), bitmap);
         }
     }
 

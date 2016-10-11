@@ -52,4 +52,8 @@ public class MainImageLoader {
         BitMapRequest request = new BitMapRequest(imageView, uri, imageLoaderConfig);
         mRequestQueue.add(request);
     }
+
+    public ImageLoaderConfig getConfig(){
+        return imageLoaderConfig;
+    }
 }
