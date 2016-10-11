@@ -3,6 +3,8 @@ package org.foree.imageloader.base;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.util.Log;
 
@@ -103,10 +105,30 @@ public class MyApplication extends Application {
             MYSDCARDSOURCEDIR = mySdcardDataDir + File.separator + "source";
         }
 
+        initApplicationVersionInfo(mContext);
+
     }
 
     public File getCacheDir(){
         return new File(mySdcardDataDir + "/" + "cache/");
+    }
+
+    //获取应用程序的版本信息
+    private void initApplicationVersionInfo(Context context) {
+        PackageManager packageManager = context.getPackageManager();
+        PackageInfo packageInfo;
+        try {
+            //获取当前包的信息
+            packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
+            //获取应用程序版本号
+            myApplicationVersion = packageInfo.versionName;
+            //获取版本序号
+            myVersionCode = packageInfo.versionCode;
+            //获取版本名称
+            myVersionName = myApplicationName + " v" + packageInfo.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 
