@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 
 import com.jakewharton.disklrucache.DiskLruCache;
 
-import org.foree.imageloader.base.MyApplication;
+import org.foree.imageloader.base.AppInfo;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -43,9 +43,9 @@ public class DiskCache extends BitmapCache {
     }
 
     private void initDiskCache() {
-        File cacheFile = new File(MyApplication.mySdcardCacheDir);
+        File cacheFile = new File(AppInfo.myCacheDir);
         try {
-            mDiskLruCache = DiskLruCache.open(cacheFile, MyApplication.myVersionCode, 1, 10 * 1024 * 1024);
+            mDiskLruCache = DiskLruCache.open(cacheFile, AppInfo.myVersionCode, 1, 10 * 1024 * 1024);
         } catch (IOException e) {
             e.printStackTrace();
         }

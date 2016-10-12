@@ -1,5 +1,7 @@
 package org.foree.imageloader.config;
 
+import android.content.Context;
+
 import org.foree.imageloader.cache.BitmapCache;
 import org.foree.imageloader.cache.DoubleCache;
 import org.foree.imageloader.cache.MemoryCache;
@@ -17,6 +19,10 @@ public class ImageLoaderConfig {
 
     }
 
+    /**
+     * 上下文对象
+     */
+    public Context mContext;
     /**
      * 图片缓存策略
      */
@@ -75,6 +81,11 @@ public class ImageLoaderConfig {
 
     public ImageLoaderConfig setLoadingResId(int resId){
         displayConfig.setLoadingResId(resId);
+        return this;
+    }
+
+    public ImageLoaderConfig setContext(Context context){
+        mContext = context;
         return this;
     }
 

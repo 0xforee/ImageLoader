@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import org.foree.imageloader.R;
-import org.foree.imageloader.base.BaseApplication;
 import org.foree.imageloader.request.BitMapRequest;
 
 /**
@@ -16,6 +15,6 @@ public class LocalLoader extends AbsLoader {
 
     @Override
     public Bitmap getBitmap(BitMapRequest request) {
-        return BitmapFactory.decodeResource(BaseApplication.getInstance().getResources(), R.drawable.pubuliu);
+        return BitmapFactory.decodeResource(mConfig.mContext.getResources(), R.drawable.pubuliu);
     }
 }

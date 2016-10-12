@@ -5,7 +5,6 @@ import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.widget.ImageView;
 
-import org.foree.imageloader.base.BaseApplication;
 import org.foree.imageloader.cache.BitmapCache;
 import org.foree.imageloader.config.ImageLoaderConfig;
 import org.foree.imageloader.core.MainImageLoader;
@@ -19,7 +18,7 @@ import org.foree.imageloader.request.BitMapRequest;
 public abstract class AbsLoader implements ILoader{
     private static final String TAG = AbsLoader.class.getSimpleName();
 
-    private ImageLoaderConfig mConfig;
+    protected ImageLoaderConfig mConfig;
     private BitmapCache mBitmapCache;
 
 
@@ -33,7 +32,7 @@ public abstract class AbsLoader implements ILoader{
 
         // showLoadingImage
         showImage(imageView, BitmapFactory.decodeResource(
-                BaseApplication.getInstance().getResources(),
+                mConfig.mContext.getResources(),
                 mConfig.displayConfig.getLoadingResId())
         );
 
