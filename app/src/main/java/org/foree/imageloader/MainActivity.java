@@ -34,10 +34,6 @@ public class MainActivity extends AppCompatActivity {
         // generate test data
         generateTestData();
 
-        // init Application dir
-        AppInfo myApplication = new AppInfo(this);
-        myApplication.initEnv();
-
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
