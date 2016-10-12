@@ -31,15 +31,17 @@ public abstract class AbsLoader implements ILoader{
     public void loadImage(BitMapRequest request){
         final ImageView imageView = request.getImageView();
 
+        // showLoadingImage
+        showImage(imageView, BitmapFactory.decodeResource(
+                BaseApplication.getInstance().getResources(),
+                mConfig.displayConfig.getLoadingResId())
+        );
+
         // check memoryCache
         Bitmap bitmap = mBitmapCache.get(request.getImageUri());
         if( bitmap == null){
 
-            // showLoadingImage
-            showImage(imageView, BitmapFactory.decodeResource(
-                    BaseApplication.getInstance().getResources(),
-                    mConfig.displayConfig.getLoadingResId())
-            );
+
 
             // getImage
             bitmap = getBitmap(request);
